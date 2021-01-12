@@ -1,23 +1,20 @@
-# Group-Theme Recoloring for Multi-Image Color Consistency
+# Fast and Effective L0 Gradient Minimization by Region Fusion
 
-This paper has been accpeted by Conference on [Pacific Graphics 2017](http://www.siggraph.org.tw/pg2017/).
+This paper has been accpeted by [International Conference on Computer Vision 2015](http://pamitc.org/iccv15/).
 
-[Group-Theme Recoloring for Multi-Image Color Consistency](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.13274)
+[Fast and Effective L0 Gradient Minimization by Region Fusion](https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Nguyen_Fast_and_Effective_ICCV_2015_paper.pdf)
 
-by Rang Nguyen, Brian Price, Scott Cohen, and Michael Brown. 
+by Rang Nguyen, and Michael Brown. 
 
 ![Figure](teaser.png)
 ### Citation
 ```
-@inproceedings{nguyen2017group,
-  title={Group-Theme Recoloring for Multi-Image Color Consistency},
-  author={Nguyen, Rang MH and Price, Brian and Cohen, Scott and Brown, Michael S},
-  booktitle={Computer Graphics Forum},
-  volume={36},
-  number={7},
-  pages={83--92},
-  year={2017},
-  organization={Wiley Online Library}
+@inproceedings{nguyen2015fast,
+  title={Fast and effective L0 gradient minimization by region fusion},
+  author={Nguyen, Rang MH and Brown, Michael S},
+  booktitle={Proceedings of the IEEE international conference on computer vision},
+  pages={208--216},
+  year={2015}
 }
 ```
 
@@ -25,33 +22,49 @@ by Rang Nguyen, Brian Price, Scott Cohen, and Michael Brown.
 ## Contents
 
 - [Introduction](#introduction)
-- [Framework](#framework)
 - [Usage](#usage)
 - [Results](#results)
 - [Contacts](#contacts)
 
 ## Introduction
-Modifying the colors of an image is a fundamental editing task with a wide range of methods available. Manipulating multiple images to share similar colors is more challenging, with limited tools available. Methods such as color transfer are effective in making an image share similar colors with a target image; however, color transfer is not suitable for modifying multiple images. Approaches for color consistency for photo collections give good results when the photo collection contains similar scene content, but are not applicable for general input images. To address these gaps, we propose an application framework for achieving color consistency for multi-image input. Our framework derives a group color theme from the input images’ individual color palettes and uses this group color theme to recolor the image collection. This group-theme recoloring provides an effective way to ensure color consistency among multiple images and naturally lends itself to the inclusion of an additional external color theme. We detail our group-theme recoloring approach and demonstrate its effectiveness on a number of examples.
+L0 gradient minimization can be applied to an input signal to control the number of non-zero gradients. This is useful in reducing small gradients generally associated with signal noise, while preserving important signal features. In computer vision, L0 gradient minimization has found applications in image denoising, 3D mesh denoising, and image enhancement. Minimizing the L0 norm, however, is an NP-hard problem because of its non-convex property. As a result, existing methods rely on approximation strategies to perform the minimization. In this paper, we present a new method to perform L0 gradient minimization that is fast and effective. Our method uses a descent approach based on region fusion that converges faster than other methods while providing a better approximation of the optimal L0 norm. In addition, our method can be applied to both 2D images and 3D mesh topologies. The effectiveness of our approach
+is demonstrated on a number of examples.
 
-## Framework
-![Figure](framework.png)
-Our group-theme recoloring framework for multiple-images. Step 1: color palettes are extracted for each input image (P_i). Step 2:
-a group-theme optimization is used to find the group color theme (T_G). The user can set the group-theme size and optimization parameters.
-Step 3 (optional): an additional external color theme (T_A) can be combined with the group color theme. Step 4: the input images are recolored
-based on the mappings between T_G, T_A, and P_i. Mappings between color themes and the individual color palettes are denoted by a box with
-two triangles, where the top triangle shows the original color and the bottom triangle shows the new color. Note while the overall procedure
-is automatic, the user can interactively change the color mappings as needed (results are updated in real time)
 ## Usage
 
-### 1. Group image recoloring
+### 1. Image
+INTRODUCTION (IMAGE L0)
+------------
+The folder contains two things as follows:
+ * exe: contains the executable file for Windows OS (including Win32 and x64).
+ * src: contains our source code implemented in C++. 
+
+HOW TO RUN
+------------
+Usage is -i <infile> -t <lambda> -o <outfile>[Optional]
+Example: type as follows in command line 
+l0_norm.exe -i country_house.jpg -t 0.2 -o country_house_l0.png
+
+NOTE: can open source code using Visual Studio 2010
 
 
+### 2. 3D Mesh
+INTRODUCTION (MESH DENOISE)
+------------
+The folder contains two things as follows:
+ * exe: contains the executable file for Windows OS (including Win32 only).
+ * src: contains our source code implemented in C++. 
 
-### 2. Brochure demo
+HOW TO RUN
+------------
+Usage is -i <infile> -t <lambda> -o <outfile>
+Example: type as follows in command line 
+Mesh_Denoising.exe -i pyramid_noise.ply -t 0.5 -o pyramid_denoise.ply
 
+NOTE: can open source code using Visual Studio 2010
 
 #### Dependencies
-- Matlab
+- C++
 
 
 
